@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class OpenMeteorClient {
+public class OpenMeteoClient {
 
     private final RestClient restClient = RestClient.create();
 
