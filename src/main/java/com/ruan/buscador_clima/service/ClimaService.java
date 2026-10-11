@@ -1,13 +1,16 @@
 package com.ruan.buscador_clima.service;
 
-import com.ruan.buscador_clima.client.OpenMeteorClient;
+import com.ruan.buscador_clima.client.OpenMeteoClient;
 import com.ruan.buscador_clima.dto.*;
+import com.ruan.buscador_clima.exception.CidadeInvalidaException;
 import com.ruan.buscador_clima.exception.CidadeNaoEncontradaException;
+import com.ruan.buscador_clima.exception.DiaInvalidoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +18,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClimaService {
 
-    private final OpenMeteorClient openMeteorClient;
+    private final OpenMeteoClient openMeteoClient;
 
     public ClimaResponse buscarClimaAtual(String cidade) {
 
         GeocodingResponse.Resultado resultado = localizarCidade(cidade);
-        ForecastResponse clima = openMeteorClient.buscarClima(resultado.latitude(),
+        ForecastResponse clima = openMeteoClient.buscarClima(resultado.latitude(),
                 resultado.longitude(),
                 1
         );
@@ -32,17 +35,17 @@ public class ClimaService {
                 clima.current().relativeHumidity2m(),
                 clima.current().windSpeed10m(),
                 descreverCondicao(clima.current().weatherCode()),
-                LocalDateTime.now()
+                LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS)
         );
     }
 
     public PrevisaoResponse buscarPrevisao(String cidade, int dias) {
 
         if (dias < 1 || dias > 7) {
-            throw new IllegalArgumentException("Número " + dias + " errado, deve ser de 1 a 7 dias");
+            throw new DiaInvalidoException("A quantidade de dias deve estar entre 1 e 7 (recebido: " + dias + ")");
         }
         GeocodingResponse.Resultado resultado = localizarCidade(cidade);
-        ForecastResponse clima = openMeteorClient.buscarClima(resultado.latitude(),
+        ForecastResponse clima = openMeteoClient.buscarClima(resultado.latitude(),
                 resultado.longitude(),
                 dias
         );
@@ -69,9 +72,9 @@ public class ClimaService {
 
     private GeocodingResponse.Resultado localizarCidade(String cidade) {
         if (cidade == null || cidade.isBlank()) {
-            throw new IllegalArgumentException("Nome da cidade inválida");
+            throw new CidadeInvalidaException("O nome da cidade não pode ser vazio");
         }
-        GeocodingResponse coordenadas = openMeteorClient.buscarCoordenadas(cidade);
+        GeocodingResponse coordenadas = openMeteoClient.buscarCoordenadas(cidade);
         if (coordenadas == null || coordenadas.results() == null || coordenadas.results().isEmpty()) {
             throw new CidadeNaoEncontradaException("Cidade " + cidade + " não encontrada");
         }
