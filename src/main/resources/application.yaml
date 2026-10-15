@@ -1,3 +1,5 @@
 spring:
   application:
     name: buscador-clima
+server:
+  port: ${PORT:8080}
