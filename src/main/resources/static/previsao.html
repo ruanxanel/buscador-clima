@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do tempo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/icones.js" defer></script>
+    <script src="js/previsao.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span>🌤️</span>
+            Buscador Clima
+        </a>
+
+        <nav class="menu" aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="clima.html">Clima atual</a>
+            <a href="previsao.html" aria-current="page">Previsão</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="titulo-pagina">
+            <h1>Previsão do tempo</h1>
+            <p>Consulte a previsão para os próximos dias da sua cidade.</p>
+        </div>
+        <form id="formPrevisao" class="formulario-previsao" autocomplete="off">
+            <div class="campo-formulario">
+                <label for="cidade">Cidade</label>
+                <input 
+                    type="text"
+                    id="cidade"
+                    name="cidade"
+                    placeholder="Ex: João Pessoa"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+            
+            <div class="campo-formulario">
+                <label for="dias">Quantidade de dias</label>
+                <select id="dias" name="dias" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+            </div>
+
+            <button type="submit">Pesquisar previsão</button>
+        </form>
+
+        <p id="mensagemErro" class="mensagem" role="alert"></p>
+
+        <section id="resultadoPrevisao" hidden>
+            <h2 id="tituloPrevisao">Previsão do tempo</h2>
+            <div id="previsaoDias"></div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>Buscador Clima - Desenvolvido com Java, Spring Boot e JavaScript.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Clima</title>
+    <meta name="description" content="Consulte o clima atual e a previsão do tempo para sua cidade">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span>🌤️</span>
+            Buscador Clima
+        </a>
+
+        <nav class="menu" aria-label="Navegação principal">
+            <a href="index.html" aria-current="page">Início</a>
+            <a href="clima.html">Clima atual</a>
+            <a href="previsao.html">Previsão</a>
+        </nav>
+    </header>
+    <main>
+        <section class="apresentacao">
+            <h2>Descubra o tempo da sua cidade</h2>
+            <p>
+                Consulte as condições climáticas atuais ou confira a previsão
+                dos próximos dias de forma simples e rápida.
+            </p>
+        </section>
+        <div class="opcoes">
+            <section class="cartoes">
+                <div class="icone-cartao">☀️</div>
+                <h2>Clima atual</h2>
+                <p>Temperatura, umidade, vento e sensação térmica.</p>
+                <a href="clima.html" class="botao">Consultar clima →</a>
+            </section>
+
+            <section class="cartoes">
+                <div class="icone-cartao">🌦️</div>
+                <h2>Previsão do tempo</h2>
+                <p>Escolha a cidade e quantos dias deseja consultar.</p>
+                <a href="previsao.html" class="botao">Ver previsão →</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>Buscador Clima - Desenvolvido com Java, Spring Boot e JavaScript.</p>
+    </footer>
+</body>
+</html>

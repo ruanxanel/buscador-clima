@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima atual | Buscador Clima</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span>🌤️</span>
+            Buscador Clima
+        </a>
+
+        <nav class="menu" aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="clima.html" aria-current="page">Clima atual</a>
+            <a href="previsao.html">Previsão</a>
+        </nav>
+    </header>
+    <main>
+        <div class="titulo-pagina">
+            <h1>Clima atual</h1>
+            <p>Consulte as condições climáticas em tempo real da sua cidade.</p>
+        </div>
+        <section>
+            <form class="formulario-clima">
+                <label for="cidade">Digite o nome da cidade: </label>
+                <input type="text" name="cidade" id="cidade" placeholder="Ex: João Pessoa" autocomplete="off" required>
+                <button type="button" name="pesquisar">Pesquisar</button>
+            </form>
+            <p id="mensagemErro" class="mensagem" role="alert"></p>
+        </section>
+        
+        <section class="resultado-clima" id="resultadoClima" hidden>
+            <div class="local-clima">
+                <h2 id="cidadeResultado">Sua cidade</h2>
+                <p id="pais"></p>
+                <p id="iconeClima" class="icone-clima" aria-hidden="true">🌤️</p>
+                <p id="condicao">Aguardando consulta...</p>
+            </div>
+
+            <div class="temperatura-principal">
+                <span id="temperatura">-- °C</span>
+            </div>
+
+            <div class="detalhes-clima">
+                <article class="detalhe">
+                    <h3>Sensação térmica</h3>
+                    <p id="sensacaoTermica">--</p>
+                </article>
+
+                <article class="detalhe">
+                    <h3>Umidade</h3>
+                    <p id="umidade">--</p>
+                </article>
+
+                <article class="detalhe">
+                    <h3>Velocidade do vento</h3>
+                    <p id="velocidadeVento">--</p>
+                </article>
+            </div>
+            
+            <p class="data-consulta">
+                Consultado em: <span id="consultadoEm">--</span>
+            </p>
+        </section>
+        
+        <section class="secao-previsao" id="secaoPrevisao" hidden>
+            <h2>Previsão para os próximos dias</h2>
+
+            <div id="previsaoDias" class="previsao-dias">
+                <p class="previsao-inicial">
+                    Pesquise uma cidade para consultar a previsão.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="rodape">
+        <p>Buscador Clima - Desenvolvido com Java, Spring Boot e JavaScript</p>
+    </footer>
+    <script src="js/clima.js"></script>
+    <script src="js/icones.js"></script>
+</body>
+</html>
